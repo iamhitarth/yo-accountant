@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBXuQK8mTF2-DLG71xsgPLZtlMkuvhUflA",
+      authDomain: "yoaccountant.firebaseapp.com",
+      databaseURL: "https://yoaccountant.firebaseio.com",
+      projectId: "yoaccountant",
+      storageBucket: "",
+      messagingSenderId: "523842195908"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+    database.ref('/intent').on('value', function(snapshot) {
+      console.log('The intent value is', snapshot.val());
+      document.getElementById('main').innerHTML = snapshot.val();
+    })
+  </script>
+</head>
+<body>
+  <h1>Yo (personal) Accountant</h1>
+  <div id='main'>
+    Home page
+  </div>
+</body>
+</html>
