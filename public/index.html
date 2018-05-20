@@ -37,9 +37,7 @@
       <h1>The Wedding</h1>
 
       <p id='main'>Loading...</p>
-      <canvas id="myChart" width="400" height="400"></canvas>
-      <!-- <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a> -->
+      <div id='chart'></div>
 
     </div>
 
@@ -55,7 +53,6 @@
         //
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-        var ctx = document.getElementById("myChart").getContext('2d');
         var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     		var lineConfig = {
     			type: 'line',
@@ -192,11 +189,15 @@
 
             // TODO: Execute the following when intent received is 'project'
             if (intentName.toLowerCase() === 'project') {
-              ctx.clearRect(0, 0, 400, 400);
+              document.getElementById('chart').innerHTML = '';
+              document.getElementById('chart').innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>'
+              var ctx = document.getElementById("myChart").getContext('2d');
               var lineChart = new Chart(ctx, lineConfig);
             }
             if (intentName.toLowerCase() === 'price') {
-              ctx.clearRect(0, 0, 400, 400);
+              document.getElementById('chart').innerHTML = '';
+              document.getElementById('chart').innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>'
+              var ctx = document.getElementById("myChart").getContext('2d');
               var myBar = new Chart(ctx, barConfig);
             }
           }, 1100)
