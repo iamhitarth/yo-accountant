@@ -26,7 +26,7 @@
 		<h1>The Wedding</h1>
 
 		<p id='main'>Loading...</p>
-    <div id='chart'></div>
+		<div id='chart'></div>
 
 	</div>
 
@@ -43,69 +43,69 @@
 			//
 			// // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-        var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    		var lineConfig = {
-    			type: 'line',
-    			data: {
-    				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    				datasets: [{
-    					label: 'Actual budget',
-    					backgroundColor: 'red',
-    					borderColor: 'red',
-    					data: [
-    						79,
-    						65,
-    						45,
-    						30,
-    						17
-    					].reverse(),
-    					fill: false,
-    				}, {
-    					label: 'Projected budget',
-    					fill: false,
-    					backgroundColor: 'blue',
-    					borderColor: 'blue',
-    					data: [
-                83,
-    						57,
-    						43,
-    						28,
-    						15
-    					].reverse(),
-    				}]
-    			},
-    			options: {
-    				responsive: true,
-    				title: {
-    					display: false,
-    					text: 'Project Status'
-    				},
-    				tooltips: {
-    					mode: 'index',
-    					intersect: false,
-    				},
-    				hover: {
-    					mode: 'nearest',
-    					intersect: true
-    				},
-    				scales: {
-    					xAxes: [{
-    						display: true,
-    						scaleLabel: {
-    							display: true,
-    							labelString: 'Month'
-    						}
-    					}],
-    					yAxes: [{
-    						display: true,
-    						scaleLabel: {
-    							display: true,
-    							labelString: "Thousand $"
-    						}
-    					}]
-    				}
-    			}
-    		};
+			var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+			var lineConfig = {
+				type: 'line',
+				data: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+					datasets: [{
+						label: 'Actual budget',
+						backgroundColor: 'red',
+						borderColor: 'red',
+						data: [
+							79,
+							65,
+							45,
+							30,
+							17
+						].reverse(),
+						fill: false,
+					}, {
+						label: 'Projected budget',
+						fill: false,
+						backgroundColor: 'blue',
+						borderColor: 'blue',
+						data: [
+							83,
+							57,
+							43,
+							28,
+							15
+						].reverse(),
+					}]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: false,
+						text: 'Project Status'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false,
+					},
+					hover: {
+						mode: 'nearest',
+						intersect: true
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: 'Month'
+							}
+						}],
+						yAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: "Thousand $"
+							}
+						}]
+					}
+				}
+			};
 
 			const barChartData = {
 				labels: ['Projected Budget', 'New Projected Budget'],
@@ -179,28 +179,21 @@
 					// TODO: Execute the following when intent received is 'project'
 					if (intentName.toLowerCase() === 'project') {
 						$('#message').fadeIn();
-						ctx.clearRect(0, 0, 400, 400);
+						document.getElementById('chart').innerHTML = '';
+						document.getElementById('chart').innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>'
+						var ctx = document.getElementById("myChart").getContext('2d');
 						var lineChart = new Chart(ctx, lineConfig);
 					}
 					if (intentName.toLowerCase() === 'price') {
-						ctx.clearRect(0, 0, 400, 400);
+						document.getElementById('chart').innerHTML = '';
+						document.getElementById('chart').innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>'
+						var ctx = document.getElementById("myChart").getContext('2d');
 						var myBar = new Chart(ctx, barConfig);
 					}
-				}, 1100)
-
-            // TODO: Execute the following when intent received is 'project'
-            if (intentName.toLowerCase() === 'project') {
-              document.getElementById('chart').innerHTML = '';
-              document.getElementById('chart').innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>'
-              var ctx = document.getElementById("myChart").getContext('2d');
-              var lineChart = new Chart(ctx, lineConfig);
-            }
-            if (intentName.toLowerCase() === 'price') {
-              document.getElementById('chart').innerHTML = '';
-              document.getElementById('chart').innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>'
-              var ctx = document.getElementById("myChart").getContext('2d');
-              var myBar = new Chart(ctx, barConfig);
-            }
-          }, 1100)
+				}, 1100);
+			})
+		});
+	</script>
+</body>
 
 </html>
